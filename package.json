@@ -48,6 +48,12 @@
     "directories": {
       "output": "app_client"
     },
+    "extraFiles": [
+      {
+        "from": "public/.json",
+        "to": "public/.json"
+      }
+    ],
     "publish": {
       "provider": "generic",
       "url": "https://example.com/app_client/",

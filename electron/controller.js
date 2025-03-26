@@ -11,6 +11,22 @@ if (!publicFilePath.includes('node_modules')) {
 /* 配置文件 */
 const configFilePath = path.join(publicFilePath, '/config.json');
 
+const readConfig = () => {
+    try {
+        if (fs.existsSync(configFilePath)) {
+            const rawData = fs.readFileSync(configFilePath, 'utf8');
+            const config = JSON.parse(rawData);
+            return config.version || '';
+        } else {
+            console.error('config error:', configFilePath);
+            return '';
+        }
+    } catch (error) {
+        console.error('config error:', error);
+        return '';
+    }
+}
+
 /* 窗口最小化 */
 ipcMain.on('minimize', (event) => {
     const mainWindow = BrowserWindow.fromWebContents(event.sender);
